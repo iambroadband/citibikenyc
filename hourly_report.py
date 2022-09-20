@@ -27,36 +27,38 @@ def pull_data():
 def hourly_report(stations):
     stations.sort(key=lambda x: x["num_bikes_available"] + x["num_ebikes_available"])
     # for station in stations:
-    # insert into database
-    # report id (maybe id from lambda) ???
-    # station id
-    # date
-    # hour
-    # bike availability
+    #     insert into database
+    #     report id (maybe id from lambda) ???
+    #     station id
+    #     date
+    #     hour
+    #     bike availability
+
+    # Attempting to connect to PostgreSQL for proof of concept, but unable on my local machine
 
     # gets the credentials from .aws/credentials
-    session = boto3.Session(profile_name="default")
-    client = session.client("rds")
+    # session = boto3.Session(profile_name="default")
+    # client = session.client("rds")
 
-    token = client.generate_db_auth_token(
-        DBHostname=ENDPOINT, Port=PORT, DBUsername=USER, Region=REGION
-    )
+    # token = client.generate_db_auth_token(
+    #     DBHostname=ENDPOINT, Port=PORT, DBUsername=USER, Region=REGION
+    # )
 
-    try:
-        conn = psycopg2.connect(
-            host=ENDPOINT,
-            port=PORT,
-            database=DBNAME,
-            user=USER,
-            password=token,
-            sslrootcert="SSLCERTIFICATE",
-        )
-        cur = conn.cursor()
-        cur.execute("""SELECT now()""")
-        query_results = cur.fetchall()
-        print(query_results)
-    except Exception as e:
-        print("Database connection failed due to {}".format(e))
+    # try:
+    #     conn = psycopg2.connect(
+    #         host=ENDPOINT,
+    #         port=PORT,
+    #         database=DBNAME,
+    #         user=USER,
+    #         password=token,
+    #         sslrootcert="SSLCERTIFICATE",
+    #     )
+    #     cur = conn.cursor()
+    #     cur.execute("""SELECT now()""")
+    #     query_results = cur.fetchall()
+    #     print(query_results)
+    # except Exception as e:
+    #     print("Database connection failed due to {}".format(e))
 
     return stations
 
