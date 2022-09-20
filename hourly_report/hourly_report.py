@@ -1,7 +1,7 @@
-import boto3
+import urllib.request
 import json
 import psycopg2
-import urllib.request
+import boto3
 
 ENDPOINT = "citibikenyc.clenayirevcu.us-east-1.rds.amazonaws.com"
 PORT = "5432"

@@ -1,4 +1,5 @@
-import urllib.request, json
+import urllib.request
+import json
 
 # Grabs the latest data from citibikenyc.com to use for the next hourly report.
 def pull_data():

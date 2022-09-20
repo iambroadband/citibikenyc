@@ -1,5 +1,6 @@
 import unittest
-import hourly_report, daily_report
+from hourly_report import hourly_report
+from daily_report import daily_report
 
 
 class TestDailyMethods(unittest.TestCase):
