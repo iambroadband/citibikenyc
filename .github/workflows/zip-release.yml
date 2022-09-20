@@ -32,13 +32,21 @@ jobs:
  #################################################################
  #### USE THIS IF YOU JUST NEED TO PUT FILES IN A ZIP ARCHIVE ####
        # Create a separate step for every function in the repo
-       - name: Zip Release Function1
+       - name: Zip Release Hourly Report
         uses: TheDoctor0/zip-release@0.4.1
         with:
           # Filename for archive
-          filename: ../function1.zip
+          filename: ../hourly_report_function.zip
           # Working directory before zipping
-          directory: function1
+          directory: hourly_report
+
+       - name: Zip Release Function2
+        uses: TheDoctor0/zip-release@0.4.1
+        with:
+          # Filename for archive
+          filename: ../daily_report_function.zip
+          # Working directory before zipping
+          directory: daily_report
 
  #################################################################
       # Release
@@ -58,13 +66,24 @@ jobs:
           prerelease: false
  #################################################################
       # Create a separate upload step for every ZIP archive you created earlier
-      - name: Upload Function1 ZIP
-        id: upload-function1-zip
+      - name: Upload Hourly Report ZIP
+        id: upload-hourly-report-function-zip
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./function1.zip
-          asset_name: function1.zip
+          asset_path: ./hourly_report_function.zip
+          asset_name: hourly_report_function.zip
+          asset_content_type: application/zip
+
+      - name: Upload Daily Report ZIP
+        id: upload-daily-report-function-zip
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./daily_report_function.zip
+          asset_name: daily_report_function.zip
           asset_content_type: application/zip
