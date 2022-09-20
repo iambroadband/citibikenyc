@@ -47,23 +47,6 @@ jobs:
           filename: ../daily_report_function.zip
           # Working directory before zipping
           directory: daily_report
-
-      #################################################################
-      # Release
-      - name: Generate release tag
-        id: release_tag
-        # Change this to whatever your release strategy is
-        run: echo "Generate your release tag here"
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ GENERATED_RELEASE }}
-          release_name: Release ${{ GENERATED_RELEASE }}
-          draft: false
-          prerelease: false
       #################################################################
       # Create a separate upload step for every ZIP archive you created earlier
       - name: Upload Hourly Report ZIP
