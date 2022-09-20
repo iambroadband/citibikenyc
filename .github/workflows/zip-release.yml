@@ -3,7 +3,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches:
-      - 'main'
+      - "main"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,11 +12,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: "3.8"
       - name: Echo intro message
         run: echo "Building packages, so that you don't have to!"
- #################################################################
- #### USE THIS IF YOU HAVE REQUIREMENTS TO INSTALL ###############
+      #################################################################
+      #### USE THIS IF YOU HAVE REQUIREMENTS TO INSTALL ###############
       - name: Build project
         run: |
           pwd
@@ -29,10 +29,10 @@ jobs:
             zip -r ../${func}.zip .
             cd ..
           done
- #################################################################
- #### USE THIS IF YOU JUST NEED TO PUT FILES IN A ZIP ARCHIVE ####
-       # Create a separate step for every function in the repo
-       - name: Zip Release Hourly Report
+        #################################################################
+        #### USE THIS IF YOU JUST NEED TO PUT FILES IN A ZIP ARCHIVE ####
+        # Create a separate step for every function in the repo
+      - name: Zip Release Hourly Report
         uses: TheDoctor0/zip-release@0.4.1
         with:
           # Filename for archive
@@ -40,7 +40,7 @@ jobs:
           # Working directory before zipping
           directory: hourly_report
 
-       - name: Zip Release Function2
+      - name: Zip Release Function2
         uses: TheDoctor0/zip-release@0.4.1
         with:
           # Filename for archive
@@ -48,7 +48,7 @@ jobs:
           # Working directory before zipping
           directory: daily_report
 
- #################################################################
+      #################################################################
       # Release
       - name: Generate release tag
         id: release_tag
@@ -64,7 +64,7 @@ jobs:
           release_name: Release ${{ GENERATED_RELEASE }}
           draft: false
           prerelease: false
- #################################################################
+      #################################################################
       # Create a separate upload step for every ZIP archive you created earlier
       - name: Upload Hourly Report ZIP
         id: upload-hourly-report-function-zip
