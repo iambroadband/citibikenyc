@@ -17,8 +17,7 @@ def pull_data():
 
 # Generates a daily report for each station, provide the hour of the day for their lowest and highest bike availability
 # def daily_report():
-# fmt: off
-# get data from database about the last 24 hours split by station id
-# for each station
-# find highest avail hour
-# find lowest avail hour
+#     get data from database about the last 24 hours split by station id
+#     for each station
+#         find highest avail hour
+#         find lowest avail hour

@@ -1,6 +1,7 @@
-import urllib.request, json
-import psycopg2
 import boto3
+import json
+import psycopg2
+import urllib.request
 
 ENDPOINT = "citibikenyc.clenayirevcu.us-east-1.rds.amazonaws.com"
 PORT = "5432"
@@ -63,12 +64,8 @@ def hourly_report(stations):
     return stations
 
 
-def main():
+def lambda_handler(event, context):
     hourly_data = pull_data()
     stations_info = hourly_data["stations_info"]
     stations_status = hourly_data["stations_status"]
-    print(hourly_report(stations_status["data"]["stations"])[0:10])
-
-
-if __name__ == "__main__":
-    main()
+    return {"statusCode": 200, "body": json.dumps("Hello from Lambda!")}
