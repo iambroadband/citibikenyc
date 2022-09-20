@@ -21,7 +21,7 @@ jobs:
         run: |
           pwd
           # For every function in this repo
-          for func in function1 function2 function3 ; do
+          for func in hourly_report daily_report ; do
             cd ${func}
             if [[ -f "requirements.txt" ]]; then
               pip install --target . -r requirements.txt
